@@ -1,0 +1,52 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 677050457044-utslpfft5snp365ii4c3oqb27b8l5u4n.apps.googleusercontent.com
+            client-secret: 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
+            scope: [openid, profile, email]
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ankurkumarsinghdhn2018@gmail.com
+    password: etqr vfqc qwnr wdmf  # Use an app password for Gmail
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/manager
+    username: postgres
+    password: postgres
+  application:
+    name: auth-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+
+server:
+  port: 8081
+
+
+resilience4j:
+  ratelimiter:
+    instances:
+      loginLimiter:
+        limit-for-period: 5
+        limit-refresh-period: 10s
+        timeout-duration: 500ms
+
+
+
+
