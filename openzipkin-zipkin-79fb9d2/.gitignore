@@ -1,0 +1,25 @@
+# Ignore the zipkin directory
+zipkin/
+
+# Other common ignores
+target/
+build/
+*.log
+*.tmp
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
+.vscode/
+*.class
+.DS_Store
+Thumbs.db
+*.jar
+*.war
+*.ear
+node_modules/
+*.env
+*.key
+*.pem
+*.crt
