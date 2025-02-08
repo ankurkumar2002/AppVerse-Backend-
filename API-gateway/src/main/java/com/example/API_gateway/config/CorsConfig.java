@@ -10,6 +10,7 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 public class CorsConfig {
 
     // @Bean
+    // ankur
     // public CorsWebFilter corsWebFilter() {
     //     CorsConfiguration corsConfig = new CorsConfiguration();
     //     corsConfig.addAllowedOrigin("http://localhost:4200");
