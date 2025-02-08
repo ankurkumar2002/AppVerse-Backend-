@@ -1,5 +1,0 @@
-zipkin2\collector\rabbitmq\RabbitMQCollector$RabbitMQSpanConsumer.class
-zipkin2\collector\rabbitmq\RabbitMQCollector$1.class
-zipkin2\collector\rabbitmq\RabbitMQCollector$LazyInit.class
-zipkin2\collector\rabbitmq\RabbitMQCollector$Builder.class
-zipkin2\collector\rabbitmq\RabbitMQCollector.class

@@ -1,6 +1,0 @@
-zipkin2\collector\scribe\ITScribeCollector.class
-zipkin2\collector\scribe\ScribeSpanConsumerTest$CaptureAsyncMethodCallback.class
-zipkin2\collector\scribe\ScribeSpanConsumerTest.class
-zipkin2\collector\scribe\ScribeSpanConsumerTest$2.class
-zipkin2\collector\scribe\ScribeCollectorTest.class
-zipkin2\collector\scribe\ScribeSpanConsumerTest$1.class
