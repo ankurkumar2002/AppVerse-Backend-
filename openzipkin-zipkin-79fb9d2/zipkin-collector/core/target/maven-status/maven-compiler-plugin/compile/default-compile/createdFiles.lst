@@ -1,0 +1,11 @@
+zipkin2\collector\CollectorMetrics.class
+zipkin2\collector\InMemoryCollectorMetrics.class
+zipkin2\collector\Collector.class
+zipkin2\collector\CollectorSampler.class
+zipkin2\collector\Collector$StoreSpans.class
+zipkin2\collector\CollectorComponent$Builder.class
+zipkin2\collector\CollectorMetrics$1.class
+zipkin2\collector\CollectorSampler$1.class
+zipkin2\collector\Collector$Builder.class
+zipkin2\collector\Collector$1.class
+zipkin2\collector\CollectorComponent.class

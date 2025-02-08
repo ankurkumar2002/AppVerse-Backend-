@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.example.auth_service.model.LoginDTO;
+import com.example.auth_service.model.UserResponse;
 import com.example.auth_service.model.Users;
 import com.example.auth_service.repository.UserRepo;
 
@@ -23,7 +24,7 @@ public class UserService {
     // LoginDTO loginDTO;
 
 
-    public LoginDTO getUserInfoToAuthenticate(String username){
+    public UserResponse getUserInfoToAuthenticate(String username){
         Users user = userRepo.findByUsername(username);
         
         if(user != null){
@@ -31,14 +32,25 @@ public class UserService {
             loginDTO.setUsername(user.getUsername());
             loginDTO.setPassword(user.getPassword());
 
-            return loginDTO;
+            UserResponse userResponse = new UserResponse();
+            userResponse.setCreated_at(user.getCreated_at());
+            userResponse.setEmail(user.getEmail());
+            userResponse.setFirst_name(user.getFirst_name());
+            userResponse.setLast_name(user.getLast_name());
+            userResponse.setRole(user.getRole());
+            userResponse.setUsername(user.getUsername());
+
+            return userResponse;
         }
 
         return null;
     }
 
     public Users getUserByUsername(String username) {
-        return userRepo.findByUsername(username);
+        Users user = userRepo.findByUsername(username);
+
+        
+        return user;
     }
 
     public Users addUser(Users user){

@@ -1,0 +1,6 @@
+zipkin2\collector\kafka\KafkaCollector$LazyKafkaWorkers.class
+zipkin2\collector\kafka\KafkaCollector.class
+zipkin2\collector\kafka\KafkaCollectorWorker.class
+zipkin2\collector\kafka\KafkaCollectorWorker$1.class
+zipkin2\collector\kafka\KafkaCollectorWorker$2.class
+zipkin2\collector\kafka\KafkaCollector$Builder.class

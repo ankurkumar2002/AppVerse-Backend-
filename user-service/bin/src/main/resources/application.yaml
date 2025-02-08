@@ -1,0 +1,33 @@
+spring:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/manager
+    username: postgres
+    password: postgres
+  application:
+    name: auth-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+
+server:
+  port: 8082
+
+
+resilience4j:
+  ratelimiter:
+    instances:
+      loginLimiter:
+        limit-for-period: 5
+        limit-refresh-period: 10s
+        timeout-duration: 500ms
+
+
+
+

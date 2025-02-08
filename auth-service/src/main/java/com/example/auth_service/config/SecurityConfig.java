@@ -3,6 +3,7 @@ package com.example.auth_service.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,6 +32,12 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    @Autowired
+    private CustomOAuth2SuccessHandler oauth2AuthenticationSuccessHandler;
+
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+
     private static final Logger logger = Logger.getLogger(SecurityConfig.class.getName());
 
     @Bean
@@ -44,26 +51,27 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated())
-                .oauth2Login(oauth -> oauth
-                    .successHandler(oauth2AuthenticationSuccessHandler())
-                    .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService()))
-                )
+                        .oauth2Login(oauth -> oauth
+                        .successHandler(oauth2AuthenticationSuccessHandler)
+                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+                    )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 //.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .oauth2Login(Customizer.withDefaults())
                 .build();
 
     }
 
-    @Bean
-    public AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler(){
-        return new CustomOAuth2SuccessHandler();
-    }
+    // @Bean
+    // public AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler(){
+    //     return new CustomOAuth2SuccessHandler();
+    // }
 
-    @Bean
-    public OAuth2UserService<OAuth2UserRequest, OAuth2User> customOAuth2UserService(){
-        return new CustomOAuth2UserService();
-    }
+    // @Bean
+    // public OAuth2UserService<OAuth2UserRequest, OAuth2User> customOAuth2UserService(){
+    //     return new CustomOAuth2UserService();
+    // }
 
 
     // @Bean

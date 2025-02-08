@@ -131,6 +131,7 @@
             </configuration>
           </execution>
           
+          
           <execution>
             <id>npm run test</id>
             <goals>

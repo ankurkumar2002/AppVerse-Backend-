@@ -1,0 +1,12 @@
+zipkin2\storage\ITSpanStore.class
+zipkin2\storage\ITTraces.class
+zipkin2\storage\ITDependencies.class
+zipkin2\TestObjects.class
+zipkin2\storage\ITServiceAndSpanNames.class
+zipkin2\storage\ITAutocompleteTags.class
+zipkin2\storage\ITDependenciesHeavy.class
+zipkin2\storage\ITStrictTraceIdFalse.class
+zipkin2\storage\ITStorage.class
+zipkin2\storage\ITSearchEnabledFalse.class
+zipkin2\storage\ITSpanStoreHeavy.class
+zipkin2\storage\ITSpanStore$1.class

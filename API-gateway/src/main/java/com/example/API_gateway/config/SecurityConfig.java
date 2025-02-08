@@ -33,7 +33,8 @@ public class SecurityConfig {
                     "/auth/login", 
                     "/auth/forgot-password", 
                     "/auth/reset-password", 
-                    "/login/oauth2/code/google"
+                    "/login/oauth2/code/google",
+                    "/validate"
                 ).permitAll()
                 .pathMatchers("/admin/**").hasRole("ADMIN")
                 .anyExchange().authenticated()

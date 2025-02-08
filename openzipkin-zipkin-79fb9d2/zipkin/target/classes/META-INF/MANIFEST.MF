@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1738140962335
+Build-Jdk-Spec: 21
+Bundle-Description: Zipkin (Parent)
+Bundle-DocURL: https://zipkin.io/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Zipkin Core Library
+Bundle-SymbolicName: io.zipkin.zipkin2.zipkin
+Bundle-Vendor: OpenZipkin
+Bundle-Version: 3.4.3
+Created-By: Apache Maven Bundle Plugin 5.1.9
+Export-Package: zipkin2;version="3.4.3";uses:="zipkin2.codec,zipkin2.int
+ ernal",zipkin2.codec;version="3.4.3";uses:="zipkin2,zipkin2.internal",z
+ ipkin2.storage;version="3.4.3";uses:="zipkin2,zipkin2.internal",zipkin2
+ .v1;version="3.4.3";uses:="zipkin2,zipkin2.internal",zipkin2.internal;z
+ ipkin2internal=true;mandatory:=zipkin2internal;version="3.4.3";uses:="z
+ ipkin2,zipkin2.storage,zipkin2.v1"
+Import-Package: zipkin2;version="[3.4,4)",zipkin2.codec;version="[3.4,4)
+ ",zipkin2.internal;version="[3.4,4)";zipkin2internal=true,zipkin2.stora
+ ge;version="[3.4,4)",zipkin2.v1;version="[3.4,4)"
+Originally-Created-By: Apache Maven Bundle Plugin 5.1.9
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-6.3.1.202206071316

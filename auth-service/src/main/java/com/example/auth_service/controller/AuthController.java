@@ -1,9 +1,12 @@
 package com.example.auth_service.controller;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.auth_service.exceptions.CustomExceptions.UserAlreadyExistsException;
 import com.example.auth_service.model.ForgotPasswordDTO;
 import com.example.auth_service.model.ForgotPasswordEmail;
 import com.example.auth_service.model.LoginDTO;
 import com.example.auth_service.model.ResetPasswordRequest;
 import com.example.auth_service.model.UserPrinciple;
+import com.example.auth_service.model.UserResponse;
 import com.example.auth_service.model.Users;
 import com.example.auth_service.repository.ResetPasswordToken;
 import com.example.auth_service.repository.UserRepo;
@@ -58,7 +63,13 @@ public class AuthController {
     @PostMapping("/signup")
     // @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> registerUser(@Validated @RequestBody Users user){
+
+        if (userService.getUserByUsername(user.getUsername()) != null) {
+            throw new UserAlreadyExistsException("User already exists!");
+        }
+        user.setRole("USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setCreated_at(LocalDateTime.now());
         return new ResponseEntity<>(userService.addUser(user),HttpStatus.OK);
     }
 
@@ -69,8 +80,14 @@ public ResponseEntity<?> authenticateUser(@RequestBody LoginDTO loginDTO) {
     Users user = userService.getUserByUsername(loginDTO.getUsername());
     if (user != null && passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
         UserDetails userDetails = new UserPrinciple(user); // Create UserDetails object
+        UserResponse userResponse = userService.getUserInfoToAuthenticate(loginDTO.getUsername());
         String token = jwtService.generateToken(userDetails, loginDTO.isRememberMe()); // Use the updated method
-        return ResponseEntity.ok(Collections.singletonMap("jwtToken", token));
+
+        Map<String, Object> response =  new HashMap<>();
+        response.put("jwtToken", token);
+        response.put("userDetails", userResponse);
+
+        return ResponseEntity.ok(response);
     } else {
         return new ResponseEntity<>("Invalid Credentials", HttpStatus.UNAUTHORIZED);
     }
