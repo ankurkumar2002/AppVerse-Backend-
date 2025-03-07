@@ -10,7 +10,11 @@ spring:
       - id: auth-service
         uri: lb://auth-service
         predicates:
-        - Path=/**
+        - Path=/auth/**
+      - id: subscription-service
+        uri: lb://subscription-service
+        predicates:
+        - Path=/api/**
 
 
 
@@ -28,13 +32,19 @@ server:
 
 
 logging:
+  file:
+    name: logs/your-application.log 
   level:
-    org:
-      springframework:
-        security: INFO
+    com.example.subscription_service: DEBUG # Log your own service code
+    org.springframework.web: DEBUG # Log web request handling
+    org.springframework.security: DEBUG # Log Spring Security if you have it in Subscription Service
+    org.springframework.data: DEBUG # Log Spring Data JPA if you are using it
+    # Add other relevant packages for debugging
 
 
 management:
   tracing:
     sampling:
       probability: 1.0
+
+

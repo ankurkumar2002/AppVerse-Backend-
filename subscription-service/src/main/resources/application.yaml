@@ -1,0 +1,48 @@
+spring:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/manager
+    username: postgres
+    password: postgres
+  application:
+    name: subscripton-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+
+server:
+  port: 8084
+
+
+resilience4j:
+  ratelimiter:
+    instances:
+      loginLimiter:
+        limit-for-period: 5
+        limit-refresh-period: 10s
+        timeout-duration: 500ms
+
+
+# logging:
+#   level:
+#     root: INFO
+#     com.example.subscription_service: DEBUG
+
+logging:
+  file:
+    name: logs/your-application.log 
+  level:
+    com.example.subscription_service: DEBUG # Log your own service code
+    org.springframework.web: DEBUG # Log web request handling
+    org.springframework.security: DEBUG # Log Spring Security if you have it in Subscription Service
+    org.springframework.data: DEBUG # Log Spring Data JPA if you are using it
+    # Add other relevant packages for debugging
+
+
+

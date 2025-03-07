@@ -47,6 +47,11 @@ resilience4j:
         limit-refresh-period: 10s
         timeout-duration: 500ms
 
+app:
+  profile:
+    upload:
+      dir: Backend/auth-service/src/main/resources/static/
+
 
 
 

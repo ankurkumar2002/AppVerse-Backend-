@@ -39,6 +39,8 @@ public class Users {
     @NotNull(message = "Role cannot be null")
     private String role;
 
+    private String profileImageUrl;
+
 
     private LocalDateTime created_at;
 
@@ -61,6 +63,27 @@ public class Users {
         this.password = password;
         this.role = role;
         this.created_at = created_at;
+    }
+
+    public Users(Long user_id, String username, String first_name, String last_name, String email, String password,
+            String role, LocalDateTime created_at, String profileImageUrl) {
+        this.user_id = user_id;
+        this.username = username;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.created_at = created_at;
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 
 

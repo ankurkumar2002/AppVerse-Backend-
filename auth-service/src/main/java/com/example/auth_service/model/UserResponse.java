@@ -10,19 +10,19 @@ public class UserResponse {
     private String email;
     private String role;
     private LocalDateTime created_at;
-
-    
+    private String profileImageUrl; // Add this field
 
     public UserResponse() {
     }
 
-    public UserResponse(String username, String first_name, String last_name, String email, String role, LocalDateTime created_at) {
+    public UserResponse(String username, String first_name, String last_name, String email, String role, LocalDateTime created_at, String profileImageUrl) {
         this.username = username;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.role = role;
         this.created_at = created_at;
+        this.profileImageUrl = profileImageUrl; // Initialize it in the constructor
     }
 
     public String getUsername() {
@@ -73,4 +73,11 @@ public class UserResponse {
         this.created_at = created_at;
     }
 
+    public String getProfileImageUrl() { // Getter for profileImageUrl
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) { // Setter for profileImageUrl
+        this.profileImageUrl = profileImageUrl;
+    }
 }

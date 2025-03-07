@@ -25,7 +25,7 @@ public class JwtAuthenticationFilter implements WebFilter, Ordered {
     @Autowired
     private JwtUtil jwtUtil;
 
-    private static final List<String> EXCLUDED_PATHS = List.of("/auth/login", "/auth/signup", "/auth/forgot-password", "/auth/reset-password", "/login/oauth2/code/google", "/validate");
+    private static final List<String> EXCLUDED_PATHS = List.of("/auth/login", "/auth/signup", "/auth/forgot-password", "/auth/reset-password", "/login/oauth2/code/google", "/validate", "/api/categories");
     private static final Logger logger = Logger.getLogger(JwtAuthenticationFilter.class.getName());
 
     @Override
