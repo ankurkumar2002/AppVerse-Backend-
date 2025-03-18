@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.auth_service.exceptions.CustomExceptions.EmailAlreadyExistsException;
 import com.example.auth_service.exceptions.CustomExceptions.UserAlreadyExistsException;
 import com.example.auth_service.model.ForgotPasswordDTO;
 import com.example.auth_service.model.ForgotPasswordEmail;
@@ -61,11 +62,13 @@ public class AuthController {
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping("/signup")
-    // @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> registerUser(@Validated @RequestBody Users user){
 
-        if (userService.getUserByUsername(user.getUsername()) != null) {
-            throw new UserAlreadyExistsException("User already exists!");
+        if (userService.getUserByUsername(user.getUsername()) != null ) {
+            throw new UserAlreadyExistsException("Username already exists!");
+        }
+        if (!userService.findAllByEmail(user.getEmail()).isEmpty()) {
+            throw new EmailAlreadyExistsException("Email already exists!");
         }
         user.setRole("USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));

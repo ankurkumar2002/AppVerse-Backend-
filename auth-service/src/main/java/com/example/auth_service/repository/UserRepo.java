@@ -1,5 +1,6 @@
 package com.example.auth_service.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,7 @@ public interface UserRepo extends JpaRepository<Users, Long> {
     Users findByUsername(String username);
 
     Optional<Users> findByEmail(String email);
+
+    List<Users> findAllByEmail(String email);
     
 }

@@ -36,4 +36,9 @@ public class CustomExceptions {
             super(message);
         }
     }
+    public static class EmailAlreadyExistsException extends RuntimeException {
+        public EmailAlreadyExistsException(String message) {
+            super(message);
+        }
+    }
 }

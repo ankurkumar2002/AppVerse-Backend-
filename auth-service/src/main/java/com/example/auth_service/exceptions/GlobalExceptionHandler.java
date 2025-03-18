@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.example.auth_service.exceptions.CustomExceptions.EmailAlreadyExistsException;
 import com.example.auth_service.exceptions.CustomExceptions.EmailSendException;
 import com.example.auth_service.exceptions.CustomExceptions.InvalidCredentialsException;
 import com.example.auth_service.exceptions.CustomExceptions.TokenExpiredException;
@@ -61,6 +62,14 @@ public class GlobalExceptionHandler {
             HttpStatus.INTERNAL_SERVER_ERROR
         );
     }
+
+    //  @ExceptionHandler(EmailAlreadyExistsException.class) // New handler for EmailAlreadyExistsException
+    // public ResponseEntity<ErrorResponse> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+    //     return new ResponseEntity<>(
+    //         new ErrorResponse(ex.getMessage()),
+    //         HttpStatus.INTERNAL_SERVER_ERROR // Return 409 Conflict for email conflict
+    //     );
+    // }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleAllExceptions(Exception ex) {
