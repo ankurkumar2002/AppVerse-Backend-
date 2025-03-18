@@ -63,29 +63,7 @@ public class SecurityConfig {
 
     }
 
-    // @Bean
-    // public AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler(){
-    //     return new CustomOAuth2SuccessHandler();
-    // }
-
-    // @Bean
-    // public OAuth2UserService<OAuth2UserRequest, OAuth2User> customOAuth2UserService(){
-    //     return new CustomOAuth2UserService();
-    // }
-
-
-    // @Bean
-    // public CorsConfigurationSource corsConfigurationSource() {
-    //     CorsConfiguration configuration = new CorsConfiguration();
-    //     configuration.setAllowedOrigins(List.of("http://localhost:4200"));
-    //     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-    //     configuration.setAllowedHeaders(List.of("*"));
-    //     configuration.setAllowCredentials(true);
-
-    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    //     source.registerCorsConfiguration("/**", configuration);
-    //     return source;
-    // }
+    
 
     
 

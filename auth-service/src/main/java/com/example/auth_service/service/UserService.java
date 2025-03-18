@@ -95,7 +95,7 @@ public class UserService {
         } catch (IOException e) {
             // Handle exception, maybe log it and set a default placeholder URL in DB
             System.err.println("Error setting default profile image: " + e.getMessage());
-            user.setProfileImageUrl("default/placeholder/image/url"); // Or some default URL if copy fails
+            user.setProfileImageUrl("C:\\Users\\10743084\\OneDrive - LTIMindtree\\Documents\\practice\\AppVerse\\AppVerse-Backend-\\auth-service\\static\\6a678d85-66aa-4030-8af1-6c292f06c9bf.png"); // Or some default URL if copy fails
         }
         return userRepo.save(user);
     }
@@ -108,6 +108,10 @@ public class UserService {
         return userRepo.findByEmail(email);
     }
 
+    public List<Users> findAllByEmail(String email){
+        return userRepo.findAllByEmail(email);
+    }
+
     public Users createUserFromOAuth2(OAuth2User oauthUser) {
         Users user = new Users();
         user.setEmail(oauthUser.getAttribute("email"));
@@ -116,6 +120,8 @@ public class UserService {
         user.setRole("USER"); // Default role
         return userRepo.save(user);
     }
+
+
 
     public Users updateUser(Users user){
         Optional<Users> existingUserOptional = userRepo.findById(user.getUser_id());

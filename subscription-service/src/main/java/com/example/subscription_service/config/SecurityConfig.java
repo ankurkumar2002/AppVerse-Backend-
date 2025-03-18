@@ -25,7 +25,7 @@ public class SecurityConfig { // You can rename this to SubscriptionServiceSecur
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // Use SecurityFilterChain for Servlet-based app
         return http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for API (configure properly for production)
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS configuration
+            // .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS configuration
             .authorizeHttpRequests(exchanges -> exchanges
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow CORS preflight requests
                 .requestMatchers(
@@ -42,23 +42,23 @@ public class SecurityConfig { // You can rename this to SubscriptionServiceSecur
             .build();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // Allow requests from your Angular frontend (adjust origin as needed)
-        config.setAllowedMethods(List.of( // Allowed HTTP methods
-            HttpMethod.GET.name(),
-            HttpMethod.POST.name(),
-            HttpMethod.PUT.name(),
-            HttpMethod.DELETE.name(),
-            HttpMethod.OPTIONS.name()
-        ));
-        config.setAllowedHeaders(List.of("*")); // Allow all headers
-        config.setAllowCredentials(true); // Allow sending credentials (cookies, authorization headers)
-        config.setExposedHeaders(List.of("Authorization")); // Expose Authorization header in CORS response
+    // @Bean
+    // public CorsConfigurationSource corsConfigurationSource() {
+    //     CorsConfiguration config = new CorsConfiguration();
+    //     config.setAllowedOrigins(List.of("http://localhost:4200")); // Allow requests from your Angular frontend (adjust origin as needed)
+    //     config.setAllowedMethods(List.of( // Allowed HTTP methods
+    //         HttpMethod.GET.name(),
+    //         HttpMethod.POST.name(),
+    //         HttpMethod.PUT.name(),
+    //         HttpMethod.DELETE.name(),
+    //         HttpMethod.OPTIONS.name()
+    //     ));
+    //     config.setAllowedHeaders(List.of("*")); // Allow all headers
+    //     config.setAllowCredentials(true); // Allow sending credentials (cookies, authorization headers)
+    //     config.setExposedHeaders(List.of("Authorization")); // Expose Authorization header in CORS response
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config); // Apply CORS config to all paths
-        return source;
-    }
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", config); // Apply CORS config to all paths
+    //     return source;
+    // }
 }
